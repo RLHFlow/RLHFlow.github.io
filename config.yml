@@ -34,9 +34,15 @@ languages:
         - name: About
           url: about/
           weight: 5
+        - name: Code
+          url: https://github.com/RLHFlow/
+          weight: 5
+        - name: Models & Data
+          url: https://huggingface.co/RLHFlow/
+          weight: 5
         - name: Tags
           url: tags/
-          weight: 10
+          weight: 5
 
 
 outputs:
