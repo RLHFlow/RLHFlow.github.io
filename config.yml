@@ -63,7 +63,7 @@ params:
   ShowRssButtonInSectionTermList: true
   ShowAllPagesInArchive: true
   ShowPageNums: true
-  ShowToc: true
+#  ShowToc: true
   # comments: false
   images: ["/about/RLHFlow-logo.png"]
 
