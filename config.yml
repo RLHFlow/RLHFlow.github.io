@@ -137,6 +137,13 @@ params:
   #     minMatchCharLength: 0
   #     keys: ["title", "permalink", "summary", "content"]
 
+markup:
+  highlight:
+    noClasses: false
+    anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
 #markup:
 #  goldmark:
 #    renderer:
