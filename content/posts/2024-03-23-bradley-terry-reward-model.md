@@ -1,5 +1,5 @@
 ---
-author: ["Wei Xiong", "Hanze Dong", "Rui Yang"
+author: ["Wei Xiong", "Hanze Dong", "Rui Yang"]
 title: "Reward Modeling Part 1: Bradley-Terry Model"
 date: "2024-03-23"
 description: "Introduction to reward modeling for RLHF, with a focus on Bradley-Terry model."
@@ -207,34 +207,35 @@ With preference dataset mixture 1, the typical training curve with Gemma-2b-it a
 We can use the resulting reward model as follows. Please ensure to format the input into the chat template before sending it into the pipeline.
 
 ```python
-  from transformers import AutoTokenizer, pipeline
-  rm_tokenizer = AutoTokenizer.from_pretrained("weqweasdas/RM-Mistral-7B")
-  device = 0 # accelerator.device
-  rm_pipe = pipeline(
-      "sentiment-analysis",
-      model="weqweasdas/RM-Mistral-7B",
-      #device="auto",
-      device=device,
-      tokenizer=rm_tokenizer,
-      model_kwargs={"torch_dtype": torch.bfloat16}
-  )
+from transformers import AutoTokenizer, pipeline
+import torch
+rm_tokenizer = AutoTokenizer.from_pretrained("weqweasdas/RM-Mistral-7B")
+device = 0 # accelerator.device
+rm_pipe = pipeline(
+  "sentiment-analysis",
+  model="weqweasdas/RM-Mistral-7B",
+  #device="auto",
+  device=device,
+  tokenizer=rm_tokenizer,
+  model_kwargs={"torch_dtype": torch.bfloat16}
+)
 
-  pipe_kwargs = {
-      "return_all_scores": True,
-      "function_to_apply": "none",
-      "batch_size": 1
-  }
+pipe_kwargs = {
+  "return_all_scores": True,
+  "function_to_apply": "none",
+  "batch_size": 1
+}
 
-  chat = [
-   {"role": "user", "content": "Hello, how are you?"},
-   {"role": "assistant", "content": "I'm doing great. How can I help you today?"},
-   {"role": "user", "content": "I'd like to show off how chat templating works!"},
-   {"role": "assistant", "content": "Can you explain more?"},
-  ]
+chat = [
+{"role": "user", "content": "Hello, how are you?"},
+{"role": "assistant", "content": "I'm doing great. How can I help you today?"},
+{"role": "user", "content": "I'd like to show off how chat templating works!"},
+{"role": "assistant", "content": "Can you explain more?"},
+]
 
-  test_texts = [tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=False).replace(tokenizer.bos_token, "")]
-  pipe_outputs = rm_pipe(test_texts, **pipe_kwargs)
-  rewards = [output[0]["score"] for output in pipe_outputs]
+test_texts = [rm_tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=False).replace(rm_tokenizer.bos_token, "")]
+pipe_outputs = rm_pipe(test_texts, **pipe_kwargs)
+rewards = [output[0]["score"] for output in pipe_outputs]
 ```
 
 ### 4.3 Evaluation
