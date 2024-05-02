@@ -46,7 +46,7 @@ The most standard presented in the [Instruct-GPT](https://arxiv.org/pdf/2203.021
 
 However, the success of this framework has not been widely reproduced in the open-source community as optimizing the reward function with policy optimization algorithm (e.g. PPO) is extremely unstable and inefficient. 
 
-While there are many works (e.g. the famous [DPO algorithm](https://arxiv.org/abs/2305.18290)) skipping the reward molding by optimizing the preference in a pure offline manner, the recent work [GSHF](https://arxiv.org/abs/2312.11456) shows that these algorithms can also benefit from reward modeling by fitted into the iterative framework presented in the paper, i.e., the model is trained with DPO, but with preference data labelled by a learned reward. This advancement, however, again necessitates the presence of a high-quality reward model.
+While there are many works (e.g. the famous [DPO algorithm](https://arxiv.org/abs/2305.18290)) skipping the reward molding by optimizing the preference in a pure <span style="color: purple;">offline manner</span>, the recent work [GSHF](https://arxiv.org/abs/2312.11456) shows that these algorithms can also benefit from reward modeling by fitted into the iterative framework presented in the paper, i.e., the model is trained with DPO, but with preference data labelled by a learned reward. This advancement, however, again necessitates the presence of a high-quality reward model.
 
 Nonetheless, the recipe for training a good reward model in the open-source community is rather limited so far. In view of this, we present this [GitHub repo](https://github.com/WeiXiongUST/RLHF-Reward-Modeling/tree/main) to train the reward model for general preference learning.
 
@@ -66,7 +66,8 @@ $$
 
 where a random preference signal \(y=1\) indicates $a^1$ is better and $y=0$ indicates $a^2$ is better. An example of a preference data is:
 
-```
+
+```text
 Prompt x:
 
 Human: How can I get my girlfriend to cook more?
@@ -83,6 +84,7 @@ Chosen $a^1$: That might work. But you could also explain to her how much you en
 
 Rejected $a^2$: Have you considered making an effort to create more harmonious interactions?
 ```
+
 
 ### 2.2 Bradley-Terry Model and Reward Function
 
