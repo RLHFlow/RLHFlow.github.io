@@ -90,9 +90,10 @@ Rejected $a^2$: Have you considered making an effort to create more harmonious i
 
 The most widely used preference model in practice is the Bradley-Terry model: there exists a scalar function  $r^*(x,a) \in \mathbb{R}$ such that given a prompt $x$ and two responses $a^1, a^2$, the probability of $a^1$ is being preferred is 
 
+$$ 
+\mathcal{P}(a^1,a^2,x):= \frac{\exp(r^* (x,a^1))}{\exp(r^* (x,a^1)) + \exp(r^*(x,a^2))} = \sigma\big(r^*(x,a^1)- r^*(x,a^2)\big) 
 $$
-\mathcal{P}(a^1,a^2,x):= \frac{\exp(r^ * (x,a^1))}{\exp(r^ * (x,a^1)) + \exp(r^*(x,a^2))} = \sigma\big(r^*(x,a^1)- r^*(x,a^2)\big).
-$$
+
 
 Since the probability of being preferred is positively related to the reward, the goal is transformed to be reward maximization, which can be achieved by many existing deep reinforcement learning (DRL) algorithms. In practice, for training stability and mitigating over-optimization, we usually use the following KL-regularized target:
 
