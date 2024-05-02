@@ -87,8 +87,10 @@ params:
   profileMode:
     enabled: false
     title: RLHFlow
-    imageUrl: "assets/RLHFlow-logo.jpeg"
-    imageTitle: RLHFlow
+    imageUrl: "/about/me.jpg" # optional
+    imageTitle: "<title of image as alt>" # optional
+    imageWidth: 140 # custom size
+    imageHeight: 140 # custom size
     # imageWidth: 120
     # imageHeight: 120
     buttons:

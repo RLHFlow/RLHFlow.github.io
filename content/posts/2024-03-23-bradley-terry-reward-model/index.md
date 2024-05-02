@@ -9,6 +9,7 @@ categories: ["Reward Modeling"]
 series: ["Reward Modeling"]
 ShowToc: true
 TocOpen: true
+math: true
 ---
 # Reward Modeling Part 1: Bradley-Terry Model
 
@@ -204,7 +205,7 @@ We use the the following hyper parameters:
 
 With preference dataset mixture 1, the typical training curve with Gemma-2b-it as the initial model:
 
-![Training Loss](2024-03-23-bradley-terry-reward-model/train-loss.png)
+![Training Loss](train-loss.png)
 
 We can use the resulting reward model as follows. Please ensure to format the input into the chat template before sending it into the pipeline.
 
@@ -257,7 +258,7 @@ The analysis comparing Mixture 1 and 2 indicates that fully utilizing response p
 
 Some of the models trained by our script achieve competitive results in the leaderboard of RewardBench, which are state-of-the-art reward models for small-size LLMs (model-size ≤ 13B). The promising results of these reward models can help resource-limited researchers to align better large language models.
 
-![RewardBench Screenshot](2024-03-23-bradley-terry-reward-model/reward-bench-screenshot.png)
+![RewardBench Screenshot](reward-bench-screenshot.png)
 
 ## 5. Conclusion and Future Work
 
