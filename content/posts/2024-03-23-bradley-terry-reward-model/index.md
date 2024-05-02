@@ -8,11 +8,12 @@ tags: ["RLHF", "Reward Modeling", "Bradley-Terry", "Gemma", "Mistral"]
 categories: ["Reward Modeling"]
 series: ["Reward Modeling"]
 ShowToc: true
-TocOpen: true
+TocOpen: false
 draft: false
 math: true
 ---
-# Reward Modeling Part 1: Bradley-Terry Model
+
+**Authors:** 
 
 [Wei Xiong](https://weixiongust.github.io/WeiXiongUST/index.html)@UIUC
 
@@ -34,7 +35,7 @@ This is the recipe for the [RLHFlow/RLHF-Reward-Modeling](https://github.com/RLH
 - 4 x A100 80G: we can train Gemma-7B-it/Mistral-7B-inst-v0.2 with max_length 4096 by Gradient checkpoint;
 - The resulting reward models achieve SOTA performance in the RMs with based model ≤ 13B in the leaderboard of [RewardBench](https://huggingface.co/spaces/allenai/reward-bench). They also outperform all existing DPO reward models. (Mar. 23, 2024)
 
-## 1. Introduction
+# 1. Introduction
 
 *Reinforcement learning from human feedback (RLHF)* is a leading technique to adapt the generation distribution to be preferred by human and has achieved tremendous success in [ChatGPT](https://openai.com/blog/chatgpt/) by OpenAI, [Claude](https://www.anthropic.com/news/claude-3-family) by Anthropic, and [Gemini](https://arxiv.org/pdf/2312.11805.pdf) by Google. 
 
@@ -50,9 +51,9 @@ While there are many works (e.g. the famous [DPO algorithm](https://arxiv.org/ab
 
 Nonetheless, the recipe for training a good reward model in the open-source community is rather limited so far. In view of this, we present this [GitHub repo](https://github.com/WeiXiongUST/RLHF-Reward-Modeling/tree/main) to train the reward model for general preference learning.
 
-## 2. RLHF Basics
+# 2. RLHF Basics
 
-### 2.1 Preference
+## 2.1 Preference
 
 **Initial model:** we assume that we have an initial checkpoint $\pi_0$ that undergoes pre-training and supervised fine-tuning (instruction-following training).
 
@@ -86,7 +87,7 @@ Rejected $a^2$: Have you considered making an effort to create more harmonious i
 ```
 
 
-### 2.2 Bradley-Terry Model and Reward Function
+## 2.2 Bradley-Terry Model and Reward Function
 
 [**Bradley-Terry Model](https://en.wikipedia.org/wiki/Bradley–Terry_model): from preference to reward**
 
@@ -109,9 +110,9 @@ $$
 \ell_{\mathcal{D}}(\theta) = \sum_{(x,a^1,a^2,y) \in \mathcal{D}} \log \Big(\sigma\big(r_{\theta}(x,a^1) - r_{\theta}(x,a^2)\big)\Big).
 $$
 
-### 3. Dataset Summary
+## 3. Dataset Summary
 
-### 3.1 Base Datasets and Statistics
+## 3.1 Base Datasets and Statistics
 
 **Base datasets:**
 
@@ -145,7 +146,7 @@ We summarize the statistics of these base datasets as follows.
 | argilla/distilabel-intel-orca-dpo-pairs | 6405 | (364, 470) | 2279 | GPT4, rank |  |
 | argilla/distilabel-capybara-dpo-7k-binarized | 7660 | (1234, 1290) | 5962 | GPT4, rank |  |
 
-### 3.2 Dataset Mixture
+## 3.2 Dataset Mixture
 
 In our study, we introduce 4 distinct versions of training set, each composed of different base datasets and pre-processed pairs. Our objective is to explore their influence on the performance of the trained reward models.
 
@@ -185,9 +186,9 @@ The primary goal of **Version 1** and **2** is to examine the effects of pair se
 
 Therefore, the development of **Version 3 and 4**  builds upon the foundation established by **Version 2**. Recognizing the absence of a safety component in the *General Chat* pairs, we incorporated an additional dataset that takes safety into account. Specifically, **Version 3** was enhanced with 30,000 samples, while **Version 4** received 150,000 samples (300K samples will dominate the whole training set). Our aim is to explore the balance between general chat functionality and safety considerations.
 
-## 4. Training and Evaluation
+# 4. Training and Evaluation
 
-### 4.1 Training Setup
+## 4.1 Training Setup
 
 **Base Model:**
 
@@ -205,7 +206,7 @@ We use the the following hyper parameters:
 - Learning rate scheduler: cosine;
 - Weight decay: 0.001.
 
-### 4.2 Training Curve and Use the Model
+## 4.2 Training Curve and Use the Model
 
 With preference dataset mixture 1, the typical training curve with Gemma-2b-it as the initial model:
 
@@ -245,7 +246,7 @@ pipe_outputs = rm_pipe(test_texts, **pipe_kwargs)
 rewards = [output[0]["score"] for output in pipe_outputs]
 ```
 
-### 4.3 Evaluation
+## 4.3 Evaluation
 
 [RewardBench](https://huggingface.co/spaces/allenai/reward-bench) introduces a comprehensive framework for assessing various reward models. It also provides all data used in evaluations, including text-score pairs, to facilitate further research into reward model properties. It explores the current state-of-the-art in reward models, examining scaling laws, refusal rates, and reasoning capabilities. Additionally, it points out the shortcomings of current preference data test sets for evaluating these models, particularly their failure to detect nuanced but critical flaws in responses. 
 
@@ -264,7 +265,7 @@ Some of the models trained by our script achieve competitive results in the lead
 
 ![RewardBench Screenshot](reward-bench-screenshot.png)
 
-## 5. Conclusion and Future Work
+# 5. Conclusion and Future Work
 
 In this post, we present a recipe for training reward model with [GitHub repo](https://github.com/WeiXiongUST/RLHF-Reward-Modeling/tree/main), the obtained models achieve state-of-the-art evaluation results on the [RewardBench](https://huggingface.co/spaces/allenai/reward-bench). The resulting reward models can be used for alignment algorithms requiring reward models like [DRL-based RLHF (PPO)](https://arxiv.org/pdf/2203.02155.pdf), and [Iterative SFT (Rejection sampling fine-tuning)](https://arxiv.org/pdf/2304.06767v4.pdf), as well as boosting the performance of the reward-free DPO by turning it into the [iterative DPO](https://arxiv.org/pdf/2312.11456.pdf). 
 
@@ -278,7 +279,7 @@ In the literature, in addition to the Bradley-Terry model, there are also other 
 - [ ]  Regression-based reward model;
 - [ ]  Multi-objective reward model.
 
-## Citation
+# Citation
 
 The repo was part of the iterative rejection sampling fine-tuning and iterative DPO. If you find the content of this repo useful in your work, please consider cite it as follows:
 
@@ -298,11 +299,11 @@ The repo was part of the iterative rejection sampling fine-tuning and iterative 
 }
 ```
 
-## Some Useful Reward Models
+# Some Useful Reward Models
 
 We have trained multiple Bradley-Terry reward models and open-sourced them on Huggingface. You can find them by searching the following names:
 
-### Gemma-2B
+## Gemma-2B
 
 [RM-Gemma-2B](https://huggingface.co/weqweasdas/RM-Gemma-2B)
 
@@ -310,11 +311,11 @@ We have trained multiple Bradley-Terry reward models and open-sourced them on Hu
 
 [RM-Gemma-2B-Mixture2-Safety30K](https://huggingface.co/weqweasdas/RM-Gemma-2B-Mixture2-Safety30K)
 
-### Gemma-7B
+## Gemma-7B
 
 [RM-Gemma-7B](https://huggingface.co/weqweasdas/RM-Gemma-7B)
 
-### Mistral-7B
+## Mistral-7B
 
 [RM-Mistral-7B](https://huggingface.co/weqweasdas/RM-Mistral-7B)
 
@@ -324,6 +325,6 @@ We have trained multiple Bradley-Terry reward models and open-sourced them on Hu
 
 [reward-model-Mistral-7B-instruct-Unified-Feedback](https://huggingface.co/Ray2333/reward-model-Mistral-7B-instruct-Unified-Feedback)
 
-## Acknowledgement
+# Acknowledgement
 
 We thank Huggingface for the open-source [TRL project](https://github.com/huggingface/trl), as well as the [Alignment Handbook Project.](https://github.com/huggingface/alignment-handbook/tree/main) We also thank the authors of [RewardBench](https://huggingface.co/spaces/allenai/reward-bench) for their efforts in constructing the first reward benchmark.

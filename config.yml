@@ -31,9 +31,9 @@ languages:
         - name: Blog
           url: posts
           weight: 5
-#        - name: Projects
-#          url: projects/
-#          weight: 5
+        - name: About
+          url: about/
+          weight: 5
         - name: Tags
           url: tags/
           weight: 10
@@ -68,7 +68,7 @@ params:
   images: ["/about/RLHFlow-logo.png"]
 
   profileMode:
-    enabled: true
+    enabled: false
     title: RLHFlow
     imageUrl: "/about/RLHFlow-logo.png"
     imageTitle: "<title of image as alt>" # optional
@@ -79,8 +79,8 @@ params:
     buttons:
       - name: Blog
         url: posts/
-#      - name: Projects
-#        url: projects
+      - name: About
+        url: about
 
   homeInfoParams:
     Title: "RLHFlow"
