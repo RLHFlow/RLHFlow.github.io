@@ -64,10 +64,10 @@ $$
 x \sim d_0, (a^1,a^2) \sim (\pi^1,\pi^2), \qquad y \sim \mathrm{Bernoulli}\big(\mathcal{P}(x,a^1,a^2)\big).
 $$
 
-where a random preference signal $y=1$ indicates $a^1$ is better and $y=0$ indicates $a^2$ is better. An example of a preference data is:
+where a random preference signal \\(y=1\\) indicates $a^1$ is better and $y=0$ indicates $a^2$ is better. An example of a preference data is:
 
 ```
-Prompt \(x\):
+Prompt x:
 
 Human: How can I get my girlfriend to cook more?
 
