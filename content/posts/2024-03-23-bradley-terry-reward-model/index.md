@@ -67,7 +67,7 @@ $$
 where a random preference signal $y=1$ indicates $a^1$ is better and $y=0$ indicates $a^2$ is better. An example of a preference data is:
 
 ```
-Prompt $x$:
+Prompt \(x\):
 
 Human: How can I get my girlfriend to cook more?
 
@@ -96,9 +96,7 @@ $$
 
 Since the probability of being preferred is positively related to the reward, the goal is transformed to be reward maximization, which can be achieved by many existing deep reinforcement learning (DRL) algorithms. In practice, for training stability and mitigating over-optimization, we usually use the following KL-regularized target:
 
-$$
-J(\pi)  = \mathbb{E}_{x \sim d_0} \left[ \mathbb{E}_{a \sim \pi(\cdot|x)}[r^*(x,a)] - \eta \mathrm{KL}(\pi(\cdot|x)\Vert \pi_0(\cdot|x)) \right],
-$$
+$$J(\pi)  = \mathbb{E}_{x \sim d_0} \left[ \mathbb{E}_{a \sim \pi(\cdot|x)}[r^*(x,a)] - \eta \mathrm{KL}(\pi(\cdot|x)\Vert \pi_0(\cdot|x)) \right],$$
 
 **Reward modeling:** Train a reward function as the maximum likelihood estimation (MLE) of the Bradley-Terry model:
 
