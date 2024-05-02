@@ -38,23 +38,6 @@ languages:
           url: tags/
           weight: 10
 
-    # custom params for each language should be under [langcode].parms - hugo v0.120.0
-    params:
-      languageAltTitle: French
-      profileMode:
-        enabled: true
-        title: RLHFlow
-        imageUrl: https://github.com/RLHFlow/RLHFlow.github.io/blob/main/assets/RMLFlow-logo.jpeg
-        imageTitle: RLHFlow
-        # imageWidth: 120
-        # imageHeight: 120
-        subtitle: "Workflow of Reinforcement Learning from Human Feedback (RLHF)"
-        buttons:
-          - name: Blog
-            url: posts
-#          - name: Projects
-#            url: projects/
-
 
 outputs:
   home:
@@ -87,7 +70,7 @@ params:
   profileMode:
     enabled: false
     title: RLHFlow
-    imageUrl: "/about/me.jpg" # optional
+    imageUrl: "/about/RLHFlow-logo.jpeg"
     imageTitle: "<title of image as alt>" # optional
     imageWidth: 140 # custom size
     imageHeight: 140 # custom size
