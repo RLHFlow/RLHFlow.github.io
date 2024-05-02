@@ -12,7 +12,7 @@ buildFuture: false
 buildExpired: false
 enableEmoji: true
 pygmentsUseClasses: true
-mainsections: ["Blog", ]
+#mainsections: ["Blog", ]
 
 minify:
   disableXML: true
@@ -65,12 +65,12 @@ params:
   ShowPageNums: true
   ShowToc: true
   # comments: false
-  images: ["assets/RLHFlow-logo.png"]
+#  images: ["/about/RLHFlow-logo.png"]
 
   profileMode:
     enabled: false
     title: RLHFlow
-    imageUrl: "assets/RLHFlow-logo.png"
+    imageUrl: "/about/RLHFlow-logo.png"
     imageTitle: "<title of image as alt>" # optional
     imageWidth: 140 # custom size
     imageHeight: 140 # custom size
@@ -115,8 +115,8 @@ params:
   #     google:
   #         SiteVerificationTag: "XYZabc"
 
-  assets:
-    disableHLJS: true
+#  assets:
+#    disableHLJS: true
   #     favicon: "<link / abs url>"
   #     favicon16x16: "<link / abs url>"
   #     favicon32x32: "<link / abs url>"
@@ -137,12 +137,12 @@ params:
   #     minMatchCharLength: 0
   #     keys: ["title", "permalink", "summary", "content"]
 
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
-  highlight:
-    noClasses: false
+#markup:
+#  goldmark:
+#    renderer:
+#      unsafe: true
+#  highlight:
+#    noClasses: false
 #  extensions:
 #    passthrough:
 #      delimiters:
@@ -179,8 +179,8 @@ markup:
 #     disabled: false
 #     privacyEnhanced: true
 
-services:
-  instagram:
-    disableInlineCSS: true
-  twitter:
-    disableInlineCSS: true
+#services:
+#  instagram:
+#    disableInlineCSS: true
+#  twitter:
+#    disableInlineCSS: true
