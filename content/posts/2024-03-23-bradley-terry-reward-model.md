@@ -64,21 +64,23 @@ $$
 
 where a random preference signal $y=1$ indicates $a^1$ is better and $y=0$ indicates $a^2$ is better. An example of a preference data is:
 
-*`Prompt* $x$:`
+```
+Prompt $x$:
 
-**`Human:** How can I get my girlfriend to cook more?`
+Human: How can I get my girlfriend to cook more?
 
-**`Assistant:** Have you tried reminding her of how nice the food tastes?`
+Assistant: Have you tried reminding her of how nice the food tastes?
 
-**`Human:** I could do it more.`
+Human: I could do it more.
 
-**`Assistant:`**
+Assistant:
 
-*`Response:`*
+Response:
 
-**`Chosen** $a^1$: That might work. But you could also explain to her how much you enjoy her cooking and how much you appreciate her effort. Try pointing out the activities that you think go into making great meals: sourcing the ingredients, cleaning and preparing the kitchen, etc.`
+Chosen $a^1$: That might work. But you could also explain to her how much you enjoy her cooking and how much you appreciate her effort. Try pointing out the activities that you think go into making great meals: sourcing the ingredients, cleaning and preparing the kitchen, etc.
 
-**`Rejected** $a^2$: Have you considered making an effort to create more harmonious interactions?`
+Rejected $a^2$: Have you considered making an effort to create more harmonious interactions?
+```
 
 ### 2.2 Bradley-Terry Model and Reward Function
 
