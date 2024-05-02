@@ -21,7 +21,7 @@ math: true
 
 [Rui Yang](https://yangrui2015.github.io)@HKUST
 
-*Date: Mar 23, 2024*
+_Note: This blog post was originally published at [Notion](https://efficient-unicorn-451.notion.site/Reward-Modeling-for-RLHF-abe03f9afdac42b9a5bee746844518d0)._
 
 **To Readers:**
 

@@ -21,9 +21,13 @@ math: true
 
 (Alphabetical order)
 
+
+_Note: This blog post was originally published at [Notion](https://efficient-unicorn-451.notion.site/Alignment-Guidebook-e5c64df77c0a4b528b7951e87337fa78)._
+
+**Acknowledgements**
+
 Thank [Hanze Dong](https://hendrydong.github.io)@Salesforce, [Tianqi Liu](https://scholar.google.com/citations?user=pUKhiMIAAAAJ&hl=en)@Google, [Wei Shen](https://www.notion.so/Wei-Shen-s-LLM-Blog-dc1c32b03e0e4f84b368dbd09ee9479a?pvs=21)@Ernie code team, [Haoxiang Wang](https://haoxiang-wang.github.io)@UIUC, for insightful feedback on an early draft of this blog.
 
-*Date: Mar 26, 2024* 
 
 **To readers:**
 
