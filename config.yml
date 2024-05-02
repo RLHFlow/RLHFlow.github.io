@@ -68,7 +68,7 @@ params:
 #  images: ["/about/RLHFlow-logo.png"]
 
   profileMode:
-    enabled: false
+    enabled: true
     title: RLHFlow
     imageUrl: "/about/RLHFlow-logo.png"
     imageTitle: "<title of image as alt>" # optional
