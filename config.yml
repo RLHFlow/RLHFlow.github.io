@@ -44,11 +44,11 @@ languages:
       profileMode:
         enabled: true
         title: RLHFlow
-        imageUrl: "assets/RLHFlow-logo.jpeg"
-        imageTitle: ProfileMode image
+        imageUrl: https://github.com/RLHFlow/RLHFlow.github.io/blob/main/assets/RMLFlow-logo.jpeg
+        imageTitle: RLHFlow
         # imageWidth: 120
         # imageHeight: 120
-        subtitle: "☄️ Fast | ☁️ Fluent | 🌙 Smooth | 📱 Responsive"
+        subtitle: "Workflow of Reinforcement Learning from Human Feedback (RLHF)"
         buttons:
           - name: Blog
             url: posts
@@ -158,6 +158,18 @@ markup:
       unsafe: true
   highlight:
     noClasses: false
+  extensions:
+    passthrough:
+      delimiters:
+        block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+        inline:
+          - - \(
+            - \)
+      enable: true
     # anchorLineNos: true
     # codeFences: true
     # guessSyntax: true
