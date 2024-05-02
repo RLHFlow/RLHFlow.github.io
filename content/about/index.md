@@ -1,6 +1,7 @@
 ---
 title: "About"
-cover: "RLHFlow-portrait.jpg"
+cover: 
+  image: "RLHFlow-portrait.jpg"
 ---
 
 
