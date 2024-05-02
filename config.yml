@@ -65,12 +65,12 @@ params:
   ShowPageNums: true
   ShowToc: true
   # comments: false
-  images: ["assets/RLHFlow-logo.jpeg"]
+  images: ["assets/RLHFlow-logo.png"]
 
   profileMode:
     enabled: false
     title: RLHFlow
-    imageUrl: "/about/RLHFlow-logo.jpeg"
+    imageUrl: "assets/RLHFlow-logo.png"
     imageTitle: "<title of image as alt>" # optional
     imageWidth: 140 # custom size
     imageHeight: 140 # custom size
@@ -143,18 +143,18 @@ markup:
       unsafe: true
   highlight:
     noClasses: false
-  extensions:
-    passthrough:
-      delimiters:
-        block:
-          - - \[
-            - \]
-          - - $$
-            - $$
-        inline:
-          - - \(
-            - \)
-      enable: true
+#  extensions:
+#    passthrough:
+#      delimiters:
+#        block:
+#          - - \[
+#            - \]
+#          - - $$
+#            - $$
+#        inline:
+#          - - \(
+#            - \)
+#      enable: true
     # anchorLineNos: true
     # codeFences: true
     # guessSyntax: true

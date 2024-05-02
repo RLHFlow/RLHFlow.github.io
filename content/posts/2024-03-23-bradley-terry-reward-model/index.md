@@ -9,6 +9,7 @@ categories: ["Reward Modeling"]
 series: ["Reward Modeling"]
 ShowToc: true
 TocOpen: true
+draft: false
 math: true
 ---
 # Reward Modeling Part 1: Bradley-Terry Model
