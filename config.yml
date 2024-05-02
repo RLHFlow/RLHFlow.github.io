@@ -65,12 +65,12 @@ params:
   ShowPageNums: true
   ShowToc: true
   # comments: false
-  images: ["assets/RLHFlow-logo.png"]
+  images: ["/about/RLHFlow-logo.png"]
 
   profileMode:
     enabled: true
     title: RLHFlow
-    imageUrl: "assets/RLHFlow-logo.png"
+    imageUrl: "/about/RLHFlow-logo.png"
     imageTitle: "<title of image as alt>" # optional
     imageWidth: 140 # custom size
     imageHeight: 140 # custom size
