@@ -73,7 +73,7 @@ As the training examples come with multi-objective ratings, the straightforward 
 We consider each example to consist of a prompt $x$ (including contexts from previous conversation turns), response $y$, and a $k$-dimensional rating vector $r\in \mathbb{R}^{k}$, where each dimension corresponds to a reward objective such as helpfulness and truthfulness. Now, we take a pre-trained decoder-only LLM without the original output linear layer as the feature extractor $f_\theta$, and pass $(x,y)$ through the decoder layers to take the hidden state of the final decoder layer on the last token as a $d$-dimensional feature. Also, we attach a new linear regression layer $w\in \mathbb{R}^{d \times k}$ on top of $f_\theta$, which outputs $k$-dimensional rating prediction. The model can be straightforwardly trained with regression loss:
 
 $$
-\min_{\theta, w} \mathbb{E}_{x,y,r\in D}\|w^\top f_\theta(x,y) - r\|_2^2
+\min_{\theta, w} \mathbb{E}_ {x,y,r} \| w^\top f_\theta(x,y) - r \|_2^2
 $$
 
 <img src="Regression.png" alt="Regression" width="625">
@@ -113,7 +113,7 @@ $$
 where the penalty coefficient $\lambda_i$ is chosen such that for a proper correction metric (e.g., Pearson or Spearman correlation coefficient) and a reference data distribution $\mathcal D$,
 
 $$
-\mathbb{E}_{\mathcal D}[\mathrm{Corr}(r_i', r_{\mathrm{verbose}})] = 0
+\mathbb{E}_ {\mathcal D}\mathrm{Corr}(r_i', r_{\mathrm{verbose}}) = 0
 $$
 
 The adjusted reward vector is denoted as $r'\in \mathbb{R}^k$.
@@ -121,7 +121,7 @@ The adjusted reward vector is denoted as $r'\in \mathbb{R}^k$.
 Finally, we multiply the gating coefficients to the multi-objective rewards, to obtain a scalar score $s$ for the response $y$ given prompt $x,$
 
 $$
-s = g_\phi(f_\theta(x))^\top r'
+\mathrm{score} = g_\phi(f_\theta(x))^\top r'
 $$
 
 ### Implementation of ArmoRM-MoE
