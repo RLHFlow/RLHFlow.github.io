@@ -76,7 +76,7 @@ $$
 \min_{\theta, w} \mathbb{E}_ {x,y,r} || w^\top f_\theta(x,y) - r ||_2^2
 $$
 
-<img src="Regression.png" alt="Regression" width="625">
+![Regression](Regression.png)
 
 ### Implementation of ArmoRM
 
