@@ -132,8 +132,16 @@ The adjusted reward vector is denoted as $r'\in \mathbb{R}^k$.
 Finally, we multiply the gating coefficients to the multi-objective rewards, to obtain a scalar score $s$ for the response $y$ given prompt $x,$
 
 $$
-\mathrm{score} = g_\phi(f_\theta(x))^\top r'
+R = g_\phi(f_\theta(x))^\top r'
 $$
+
+To train the gating layer, we freeze the parameters of the backbone and the regression layer, and only train the gating layer with the Bradley-Terry loss,
+
+$$
+\min_\phi \mathbb{E} \left[ -\log \frac{\exp(R_{\mathrm{chosen}})}{\exp(R_\mathrm{chosen}+R_\mathrm{rejected})} \right]
+$$
+
+where $R_{\mathrm{chosen}}$ and $R_{\mathrm{rejected}}$ are the preference scores for the chosen and rejected responses in each pairwise example, $(x, y_{\mathrm{chosen}}, y_{\mathrm{rejected}})$.
 
 ### Implementation of ArmoRM-MoE
 
