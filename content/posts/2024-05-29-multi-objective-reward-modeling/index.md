@@ -20,7 +20,7 @@ This work is authored by [Haoxiang Wang*](https://haoxiang-wang.github.io/), [We
 - **Code:** [https://github.com/RLHFlow/RLHF-Reward-Modeling](https://github.com/RLHFlow/RLHF-Reward-Modeling)
 - **Model:** [https://huggingface.co/RLHFlow/ArmoRM-Llama3-8B-v0.1](https://huggingface.co/RLHFlow/ArmoRM-Llama3-8B-v0.1)
 - **Technical Report:** To be released in June, 2024
-
+- **Contact:** Haoxiang Wang ([hwang264@illinois.edu](mailto:wx13@illinois.edu))
 ---
 # Abstract
 
@@ -73,7 +73,7 @@ As the training examples come with multi-objective ratings, the straightforward 
 We consider each example to consist of a prompt $x$ (including contexts from previous conversation turns), response $y$, and a $k$-dimensional rating vector $r\in \mathbb{R}^{k}$, where each dimension corresponds to a reward objective such as helpfulness and truthfulness. Now, we take a pre-trained decoder-only LLM without the original output linear layer as the feature extractor $f_\theta$, and pass $(x,y)$ through the decoder layers to take the hidden state of the final decoder layer on the last token as a $d$-dimensional feature. Also, we attach a new linear regression layer $w\in \mathbb{R}^{d \times k}$ on top of $f_\theta$, which outputs $k$-dimensional rating prediction. The model can be straightforwardly trained with regression loss:
 
 $$
-\min_{\theta, w} \mathbb{E}_ {x,y,r} \| w^\top f_\theta(x,y) - r \|_2^2
+\min_{\theta, w} \mathbb{E}_ {x,y,r} || w^\top f_\theta(x,y) - r ||_2^2
 $$
 
 <img src="Regression.png" alt="Regression" width="625">
@@ -154,7 +154,7 @@ The table above presents the evaluation results of our ArmoRM-MoE model on the R
 2. Our model also outperforms the LLM-as-a-Judge approach with a GPT-4 judge by a considerable margin, indicating that our model could be used as a replacement for GPT-4 in many annotation jobs or even serve as a judge model for benchmarks (e.g., [MT-Bench](https://arxiv.org/abs/2306.05685), [AlpacaEval-2.0](https://tatsu-lab.github.io/alpaca_eval/), [ArenaHard](https://lmsys.org/blog/2024-04-19-arena-hard/)).
 3. The Cohere May 2024 model, developed by Cohere AI, is a closed model with unknown size and training details. Despite the lack of information about this model, our ArmoRM-Llama3-8B-v0.1 still manages to outperform it on the Reward-Bench benchmark.
 
-# Usage Examples (Demo Code)
+# Usage Example (Code Demo)
 
 ```python
 import torch
