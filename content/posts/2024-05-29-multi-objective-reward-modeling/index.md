@@ -19,7 +19,7 @@ This work is authored by [Haoxiang Wang*](https://haoxiang-wang.github.io/), [We
 
 - **Code:** [https://github.com/RLHFlow/RLHF-Reward-Modeling](https://github.com/RLHFlow/RLHF-Reward-Modeling)
 - **Model:** [https://huggingface.co/RLHFlow/ArmoRM-Llama3-8B-v0.1](https://huggingface.co/RLHFlow/ArmoRM-Llama3-8B-v0.1)
-- **Technical Report:** To be released in June, 2024
+- **Technical Report:** [Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts](https://arxiv.org/abs/2406.12845)
 - **Contact:** Haoxiang Wang ([hwang264@illinois.edu](mailto:wx13@illinois.edu))
 ---
 # Abstract
@@ -245,10 +245,10 @@ print(helpsteer_rewards_pred)
 If you find this work useful for your research, please consider citing:
 
 ```
-@article{wang2024interpretable,
-  title={Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts},
-  author={Wang, Haoxiang and Xiong, Wei and Xie, Tengyang and Zhao, Han and Zhang, Tong},
-  year={2024}
+@article{ArmoRM,
+      title={Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts}, 
+      author={Haoxiang Wang and Wei Xiong and Tengyang Xie and Han Zhao and Tong Zhang},
+      journal={arXiv preprint arXiv:2406.12845},
 }
 
 @inproceedings{wang2024arithmetic,
