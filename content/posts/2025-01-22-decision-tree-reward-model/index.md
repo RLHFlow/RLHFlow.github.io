@@ -13,7 +13,7 @@ draft: false
 math: true
 ---
 + **Author** [Min Li](https://min-li.github.io/)
-+ Code: https://github.com/RLHFlow/RLHF-Reward-Modeling/decision_tree/
++ **Code**: https://github.com/RLHFlow/RLHF-Reward-Modeling/tree/main/decision_tree
 + **Models**:
   + [Decision-Tree-Reward-Gemma-2-27B](https://huggingface.co/RLHFlow/Decision-Tree-Reward-Gemma-2-27B)
   + [Decision-Tree-Reward-Llama-3.1-8B](https://huggingface.co/RLHFlow/Decision-Tree-Reward-Llama-3.1-8B)
@@ -120,7 +120,6 @@ The axis labels of models are ordered by their agreement with human preferences,
 
 Note:
 * `Human` here means the human annotators who label the preference data of the HelpSteer2-Preference dataset. Note that humans typically have diverse preferences and different LLMs are aligned with different human annotators. So this heatmap is just a reference based on the HelpSteer2-Preference dataset and does not imply any particular LLM is poorly aligned with human preferences.
-* Some LLMs do not follow our prompt template well ... We demonstrate the success rate below to let readers be aware that the metric computation for them is not as reliable as other LLMs
 
 **Preference Similarity Visualization with UMAP.** To further enhance our understanding of these relationships, we employed UMAP dimensionality reduction to project the preference patterns into a more interpretable 2D space:
 
