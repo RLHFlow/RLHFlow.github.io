@@ -1,7 +1,7 @@
 ---
 author: ["Min Li"]
 title: "Interpreting Language Model Preferences Through the Lens of Decision Trees"
-date: "2025-01-17"
+date: "2025-01-22"
 description: "A decision-tree perspective to interpret LLM preference mechanisms."
 summary: "A decision-tree perspective to interpret LLM preference mechanisms."
 tags: ["LLM", "Reward Modeling", "Decision Tree"]
