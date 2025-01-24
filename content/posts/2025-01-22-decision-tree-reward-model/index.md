@@ -17,6 +17,7 @@ math: true
 + **Models**:
   + [Decision-Tree-Reward-Gemma-2-27B](https://huggingface.co/RLHFlow/Decision-Tree-Reward-Gemma-2-27B)
   + [Decision-Tree-Reward-Llama-3.1-8B](https://huggingface.co/RLHFlow/Decision-Tree-Reward-Llama-3.1-8B)
++ **Dataset**: 
 + **Tech Report**: To release soon
 ---
 # Abstract
@@ -233,26 +234,26 @@ Looking at the decision trees fitted to our multi-objective reward models:
 We evaluate our decision-tree-based reward models on [Reward-Bench](https://huggingface.co/spaces/allenai/reward-bench), a comprehensive benchmark designed to assess reward model performance across multiple dimensions of LLM alignment. Reward-Bench evaluates models on four key aspects: general chat quality, challenging chat scenarios, safety considerations, and reasoning capabilities.
 
 
-Rank | Model | Base Model | Method | Overall Score | Chat | Chat Hard | Safety | Reasoning |
-|:------|:------|:-----------|:-------|:------|:-----|:----------|:-------|:----------|
-1 | [**Decision-Tree-Reward-Gemma-2-27B**](https://huggingface.co/RLHFlow/Decision-Tree-Reward-Gemma-2-27B) | Gemma-2-27B | Decision Tree | **95.3** | 96.9 | **91.4** | 93.7 | **99.1** |
-2 | INF-QRM-Llama3.1-70B | Llama-3.1-70B | Sequence Classifier | 95.1 | 96.6 | 91.0 | 93.6 | **99.1** |
-3 | QRM-Gemma-2-27B | Gemma-2-27B | Sequence Classifier | 94.4 | 96.6 | 90.1 | 92.7 | 98.3 |
-4 | Skywork-Reward-Gemma-2-27B-v0.2 | Gemma-2-27B | Sequence Classifier | 94.3 | 96.1 | 89.9 | 93.0 | 98.1 |
-5 | [**Decision-Tree-Reward-Llama-3.1-8B**](https://huggingface.co/RLHFlow/Decision-Tree-Reward-Llama-3.1-8B) | Llama-3.1-8B | Decision Tree | 94.3 | 96.9 | 89.3 | 92.9 | 98.5 |
-6 | Llama-3.1-Nemotron-70B-Reward | Llama-3.1-70B | Custom Classifier | 94.1 | 97.5 | 85.7 | **95.1** | 98.1 |
-7 | Skywork-Reward-Gemma-2-27B | Gemma-2-27B | Sequence Classifier | 93.8 | 95.8 | **91.4** | 91.9 | 96.1 |
-8 | TextEval-Llama3.1-70B | Llama-3.1-70B | Generative | 93.5 | 94.1 | 90.1 | 93.2 | 96.4 |
-9 | MetaMetrics-RM-v1.0 | - | Custom Classifier | 93.4 | **98.3** | 86.4 | 90.8 | 98.2 |
-10 | Skywork-Critic-Llama-3.1-70B | Llama-3.1-70B | Generative | 93.3 | 96.6 | 87.9 | 93.1 | 95.5 |
-11 | QRM-Llama3.1-8B-v2 | Llama-3.1-8B | Sequence Classifier | 93.1 | 96.4 | 86.8 | 92.6 | 96.8 |
-12 | Skywork-Reward-Llama-3.1-8B-v0.2 | Llama-3.1-8B | Sequence Classifier | 93.1 | 94.7 | 88.4 | 92.7 | 96.7 |
+Rank | Model | Base Model | Method | Overall Score | Chat     | Chat Hard | Safety   | Reasoning |
+|:------|:------|:-----------|:-------|:--------------|:---------|:----------|:---------|:----------|
+1 | [**Decision-Tree-Reward-Gemma-2-27B**](https://huggingface.co/RLHFlow/Decision-Tree-Reward-Gemma-2-27B) | Gemma-2-27B | Decision Tree | **95.4**      | 96.9     | **91.4**  | 93.9     | **99.2**  |
+2 | INF-QRM-Llama3.1-70B | Llama-3.1-70B | Sequence Classifier | 95.1          | 96.6     | 91.0      | 93.6     | 99.1      |
+3 | [**Decision-Tree-Reward-Llama-3.1-8B**](https://huggingface.co/RLHFlow/Decision-Tree-Reward-Llama-3.1-8B) | Llama-3.1-8B | Decision Tree | 94.5          | 96.6     | 89.5      | 93.2     | 98.6      |
+4 | QRM-Gemma-2-27B | Gemma-2-27B | Sequence Classifier | 94.4          | 96.6     | 90.1      | 92.7     | 98.3      |
+5 | Skywork-Reward-Gemma-2-27B-v0.2 | Gemma-2-27B | Sequence Classifier | 94.3          | 96.1     | 89.9      | 93.0     | 98.1      |
+6 | Llama-3.1-Nemotron-70B-Reward | Llama-3.1-70B | Custom Classifier | 94.1          | 97.5     | 85.7      | **95.1** | 98.1      |
+7 | Skywork-Reward-Gemma-2-27B | Gemma-2-27B | Sequence Classifier | 93.8          | 95.8     | **91.4**  | 91.9     | 96.1      |
+8 | TextEval-Llama3.1-70B | Llama-3.1-70B | Generative | 93.5          | 94.1     | 90.1      | 93.2     | 96.4      |
+9 | MetaMetrics-RM-v1.0 | - | Custom Classifier | 93.4          | **98.3** | 86.4      | 90.8     | 98.2      |
+10 | Skywork-Critic-Llama-3.1-70B | Llama-3.1-70B | Generative | 93.3          | 96.6     | 87.9      | 93.1     | 95.5      |
+11 | QRM-Llama3.1-8B-v2 | Llama-3.1-8B | Sequence Classifier | 93.1          | 96.4     | 86.8      | 92.6     | 96.8      |
+12 | Skywork-Reward-Llama-3.1-8B-v0.2 | Llama-3.1-8B | Sequence Classifier | 93.1          | 94.7     | 88.4      | 92.7     | 96.7      |
 
 Our evaluation reveals several key findings:
 
-- The Gemma-2-27B version achieves state-of-the-art performance with a 95.3 overall score, leading in both reasoning tasks (99.1) and challenging chat scenarios (91.4).
-- Both decision tree models show substantial improvements over their base Skywork versions, with relative error reductions of 26.3% for Gemma-2-27B and 17.4% for Llama-3.1-8B.
-- The strong performance across all categories suggests that our decision-tree approach successfully captures nuanced preference patterns while maintaining interpretability.
+- Our Gemma-2-27B version achieves state-of-the-art performance with a 95.4 overall score, leading in both Chat Hard (91.4) and Reasoning (99.2) categories.
+- Both decision tree models show substantial improvements over their base Skywork versions, with relative error reductions of 19.3% for the Gemma-2-27B version and 20.3% for the Llama-3.1-8B version.
+- The strong performance across all categories suggests that our decision-tree approach successfully captures human preference patterns accurately while maintaining interpretability.
 
 
 # Conclusion
