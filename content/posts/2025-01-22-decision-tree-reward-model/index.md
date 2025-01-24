@@ -256,6 +256,43 @@ Our evaluation reveals several key findings:
 - The strong performance across all categories suggests that our decision-tree approach successfully captures human preference patterns accurately while maintaining interpretability.
 
 
+# Usage Code
+Before using the model, ensure you have the following dependencies installed:
+- `transformers==4.45.2`
+- `torch>=2.5.0`
+- `flash-attn>=2.6.3`
+
+Note: This code requires a GPU with NVIDIA Ampere architecture or newer.
+```python
+from transformers import AutoModelForSequenceClassification
+import torch
+from transformers import AutoTokenizer
+model_name = "Decision-Tree-Reward-Llama-3.1-8B" # Another choice is "Decision-Tree-Reward-Gemma-2-27B" 
+repo_id = f"RLHFlow/{model_name}"
+device = "cuda"
+# Initialize the model and tokenizer
+model = AutoModelForSequenceClassification.from_pretrained(repo_id, trust_remote_code=True, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2", device_map=device)
+tokenizer = AutoTokenizer.from_pretrained(repo_id, use_fast=True)
+# Load the decision tree
+model.load_decision_tree(repo_id, filename="decision_tree.pkl")
+
+# Prompt and response pairs
+prompt = "Jane has 12 apples. She gives 4 apples to her friend Mark, then buys 1 more apple, and finally splits all her apples equally among herself and her 2 siblings. How many apples does each person get?"
+response1 = "1. Jane starts with 12 apples and gives 4 to Mark. 12 - 4 = 8. Jane now has 8 apples.\n2. Jane buys 1 more apple. 8 + 1 = 9. Jane now has 9 apples.\n3. Jane splits the 9 apples equally among herself and her 2 siblings (3 people in total). 9 ÷ 3 = 3 apples each. Each person gets 3 apples."
+response2 = "1. Jane starts with 12 apples and gives 4 to Mark. 12 - 4 = 8. Jane now has 8 apples.\n2. Jane buys 1 more apple. 8 + 1 = 9. Jane now has 9 apples.\n3. Jane splits the 9 apples equally among her 2 siblings (2 people in total). 9 ÷ 2 = 4.5 apples each. Each person gets 4 apples."
+
+# Compare the two responses
+output = model.compare(prompt, response1, response2, tokenizer, device)
+print("Response 1 rewards")
+print(dict(zip(output["attributes"], output["rewards"][0])))
+# {'helpfulness': 3.9603815, 'correctness': 3.9727726, 'coherence': 3.8582935, 'complexity': 0.9909791, 'verbosity': 1.4901903}
+print("Response 2 rewards")
+print(dict(zip(output["attributes"], output["rewards"][1])))
+# {'helpfulness': 2.1698856, 'correctness': 2.2035594, 'coherence': 3.2032843, 'complexity': 0.8786768, 'verbosity': 1.4569137}
+print("Model preference")
+print(output["preference"])
+# 0
+```
 # Conclusion
 
 This paper introduces a novel framework for interpreting LLM preference mechanisms through decision trees, demonstrating that leading models like GPT-4o, Claude-3.5-Sonnet, and Llama-3.1-405B closely mirror human decision-making patterns while some open-source models show systematic biases. Building on these insights, we develop an interpretable reward modeling approach that achieves state-of-the-art performance on RewardBench while providing explicit decision paths. Our analysis reveals consistent preference patterns within model families, suggesting that architecture and training methodology significantly influence how models make decisions. By making preference mechanisms more transparent and interpretable, this work provides valuable tools for improving LLM alignment. To facilitate further research, we release our codebase, preference data, and trained models that combine strong performance with clear interpretability.
