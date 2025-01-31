@@ -75,10 +75,9 @@ Thanks to decent instruction-following capabilities in modern LLMs, this templat
 * `verbosity`: Amount of detail included in the response, relative to what is asked for in the prompt.
 Here we show the the probability distribution of each attribute and the Pearson correlation between each pair of attributes.
 ![Distribution](helpsteer_distribution.png)
-<div align="center">
-<img src="helpsteer_correlation.png" width="50%"/>
-</div>
-
+<p align="center">
+  <img src="./helpsteer_correlation.png" alt="HelpSteer Correlation" width="50%">
+</p>
 **Models:** We applied this methodology across a comprehensive set of 34 LLMs, encompassing both closed and open-source models. Our selection includes 9 closed-source models from industry leaders (OpenAI's GPT series, Anthropic's Claude series, and Google's Gemini series) and 25 open-source models (including model variants of the Llama-3, Mistral, Gemma, Qwen, and DeepSeek families). For closed-source models, we utilized their official APIs, while open-source model inference was conducted through the Together API platform. This diverse model selection enables us to examine preference patterns across different architectures, scales, and training approaches.
 * **Open-Source models:** 
   * **Llama-3**:Llama-3-8B, Llama-3-70B, Llama-3.1-8B, Llama-3.1-70B, Llama-3.1-405B, , Llama-3.1-Nemotron-70B, Llama-3.2-3B, Llama-3.2-11B-Vision, Llama-3.2-90B-Vision, Llama-3.3-70B
@@ -146,16 +145,15 @@ where:
   - For instance, $r^1 = (r^1_{\text{helpfulness}}, r^1_{\text{correctness}}, r^1_{\text{coherence}}, r^1_{\text{complexity}}, r^1_{\text{verbosity}})$.
 - $y$: Preference label, indicating whether $a^1$ is better than $a^2$, defined as $y = \mathbb{I}(a^1 \succ a^2)$, where $\mathbb{I}(\cdot)$ is the indicator function
 
-We train a decision tree $f$ using a simple logistic-regression-style loss:
+We grow a decision tree $f$ by recursively splitting nodes based on the attribute differences $(r^1 - r^2)$ in the 5 dimensions (helpfulness, correctness, coherence, complexity, verbosity). At each potential split point, we use the log-loss criterion:
 
 $$
-\min_{f}  \; \mathbb{E}_{(x, a^1, a^2, r^1, r^2, y)} \Bigl[ 
-    y \,\log\! \bigl(f(r^1 - r^2)\bigr)
-    \;+\;
-    (1 - y)\,\log\!\bigl(1 - f(r^1 - r^2)\bigr)
-\Bigr],
+L_{\text{split}} = -\sum_{i \in S_{\text{left}}} \Bigl[y_i \log(p_{\text{left}}) + (1-y_i)\log(1-p_{\text{left}})\Bigr] \\
+-\sum_{i \in S_{\text{right}}} \Bigl[y_i \log(p_{\text{right}}) + (1-y_i)\log(1-p_{\text{right}})\Bigr]
 $$
-where the features are the differences $(r^1 - r^2)$ in the 5 attributes (helpfulness, correctness, coherence, complexity, verbosity).  The scalar output $f(\cdot)$ is then the predicted probability that $a^1$ is the better response.  
+
+where $S_{\text{left}}$ and $S_{\text{right}}$ are the sets of samples in the left and right child nodes after the split, and $p_{\text{left}}$ and $p_{\text{right}}$ are the proportion of positive samples in each child node. The tree selects the split that minimizes this loss at each step. The scalar output $f(\cdot)$ at each leaf node is then the proportion of positive samples (preference for $a^1$) that reached that leaf.
+
 
 Notably, the preference label $y$ can be provided either by humans or by a particular LLM.  By swapping in different preference labels, we can train a separate decision tree for each “judge” (whether human or a specific LLM).  This allows us to compare how different judges structure their decision criteria.
 
