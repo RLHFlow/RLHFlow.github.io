@@ -20,11 +20,20 @@ math: true
 + **Dataset**: 
 + **Tech Report**: To release soon
 ---
+
 # Abstract
 
 Modern Large Language Models (LLMs) are typically aligned with human preferences through Supervised Fine-Tuning (SFT) and Reinforcement Learning from Human Feedback (RLHF). While the goal is for aligned LLMs to exhibit human-like preferences, the internal decision-making mechanisms driving these preferences remain opaque. We present a novel interpretability framework that leverages decision trees to model and analyze how LLMs make preference judgments between response pairs to the same prompt.
 Using the HelpSteer2 dataset with 5-dimensional human ratings for responses, we train decision trees to predict preferences across modern LLMs of different sizes and compare them with human preference structures. Our analysis reveals that leading models like GPT-4 and Claude-3.5 demonstrate decision-making patterns that closely mirror human preference architectures, while some other LLMs exhibit systematic divergences. A key finding shows that while humans exhibit minimal dependence on response verbosity in their judgments, certain LLMs strongly rely on verbosity in their preference judgments.
 We extend this decision-tree framework to develop interpretable reward models that serve as human preference proxies. By fine-tuning Skywork-Reward-Llama-3.1-8B-v0.2 on HelpSteer2 to predict multi-objective ratings, we further fit a decision tree on top of it with human preference data. Our resulting model, Llama-3.1-8B-Decision-Tree-Reward, achieves state-of-the-art performance on RewardBench while providing explicit decision-making paths for its preferences. To facilitate further research in interpretable preference learning, we release our codebase, collected LLM preference data, and trained models.
+
+
+
+![Workflow](decision_tree_workflow.png)
+
+**Decision-tree reward model architecture**  
+Architecture of our decision tree reward model. It consists of a regression score rating module that continuously evaluates response quality across multiple dimensions, and a decision tree that recursively grows via greedy splitting on reward differences to yield interpretable decision paths.
+
 
 # Motivation
 
@@ -73,11 +82,11 @@ Thanks to decent instruction-following capabilities in modern LLMs, this templat
 * `coherence`: Consistency and clarity of expression.
 * `complexity`: Intellectual depth required to write response (i.e. whether the response can be written by anyone with basic language competency or requires deep domain expertise).
 * `verbosity`: Amount of detail included in the response, relative to what is asked for in the prompt.
-Here we show the the probability distribution of each attribute and the Pearson correlation between each pair of attributes.
+Here we show the probability distribution of each attribute and the Pearson correlation between each pair of attributes.
 ![Distribution](helpsteer_distribution.png)
-<p align="center">
-  <img src="/content/posts/2025-01-22-decision-tree-reward-model/helpsteer_correlation.png" alt="HelpSteer Correlation" width="50%">
-</p>
+![Correlation](helpsteer_correlation.png)
+
+
 **Models:** We applied this methodology across a comprehensive set of 34 LLMs, encompassing both closed and open-source models. Our selection includes 9 closed-source models from industry leaders (OpenAI's GPT series, Anthropic's Claude series, and Google's Gemini series) and 25 open-source models (including model variants of the Llama-3, Mistral, Gemma, Qwen, and DeepSeek families). For closed-source models, we utilized their official APIs, while open-source model inference was conducted through the Together API platform. This diverse model selection enables us to examine preference patterns across different architectures, scales, and training approaches.
 * **Open-Source models:** 
   * **Llama-3**:Llama-3-8B, Llama-3-70B, Llama-3.1-8B, Llama-3.1-70B, Llama-3.1-405B, , Llama-3.1-Nemotron-70B, Llama-3.2-3B, Llama-3.2-11B-Vision, Llama-3.2-90B-Vision, Llama-3.3-70B
