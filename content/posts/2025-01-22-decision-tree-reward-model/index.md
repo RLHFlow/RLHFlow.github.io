@@ -76,7 +76,7 @@ Thanks to decent instruction-following capabilities in modern LLMs, this templat
 Here we show the the probability distribution of each attribute and the Pearson correlation between each pair of attributes.
 ![Distribution](helpsteer_distribution.png)
 <p align="center">
-  <img src="./helpsteer_correlation.png" alt="HelpSteer Correlation" width="50%">
+  <img src="/content/posts/2025-01-22-decision-tree-reward-model/helpsteer_correlation.png" alt="HelpSteer Correlation" width="50%">
 </p>
 **Models:** We applied this methodology across a comprehensive set of 34 LLMs, encompassing both closed and open-source models. Our selection includes 9 closed-source models from industry leaders (OpenAI's GPT series, Anthropic's Claude series, and Google's Gemini series) and 25 open-source models (including model variants of the Llama-3, Mistral, Gemma, Qwen, and DeepSeek families). For closed-source models, we utilized their official APIs, while open-source model inference was conducted through the Together API platform. This diverse model selection enables us to examine preference patterns across different architectures, scales, and training approaches.
 * **Open-Source models:** 
@@ -210,9 +210,9 @@ Once our multi-objective reward model can output a 5D rating vector $\hat{r} \in
 
 1. **Compute Rating Differences**.  For each pair $(a^1, a^2)$ in HelpSteer2, we feed both responses into the fine-tuned reward model to obtain
    $$
-     \hat{r}^1 \;=\; (\hat{r}^1_{\text{helpfulness}}, \ldots, \hat{r}^1_{\text{verbosity}}), 
+     \hat{r}^1 = (\hat{r}^1_{\text{helpfulness}}, \ldots, \hat{r}^1_{\text{verbosity}}), 
      \quad
-     \hat{r}^2 \;=\; (\hat{r}^2_{\text{helpfulness}}, \ldots, \hat{r}^2_{\text{verbosity}}).
+     \hat{r}^2 = (\hat{r}^2_{\text{helpfulness}}, \ldots, \hat{r}^2_{\text{verbosity}}).
    $$
 2. **Fit a Decision Tree**.  Finally, we train a depth‐3 decision tree $f(\hat{r_1} - \hat{r_2})$ to predict the pairwise preference label $y$ on the training set of HelpSteer2-Preference.  This matches the procedure in our earlier analysis of human‐labeled data, except that the multi-objective rewards come from **model**‐predicted rating ($\hat{r_1}, \hat{r_2}$) rather than human-annotated ratings ($r_1, r_2$).
 
