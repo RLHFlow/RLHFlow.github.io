@@ -237,8 +237,8 @@ Looking at the decision trees fitted to our multi-objective reward models:
 * The Llama-3.1-8B tree, while also using helpfulness at its root, incorporates correctness, verbosity, and complexity in its deeper nodes. This mixed-attribute approach suggests the model has learned
 
 
-## Evaluation on RewardBench
-We evaluate our decision-tree-based reward models on [Reward-Bench](https://huggingface.co/spaces/allenai/reward-bench), a comprehensive benchmark designed to assess reward model performance across multiple dimensions of LLM alignment. Reward-Bench evaluates models on four key aspects: general chat quality, challenging chat scenarios, safety considerations, and reasoning capabilities.
+## Evaluation on RewardBench v1 (Jan 2025)
+We evaluate our decision-tree-based reward models on [RewardBench v1](https://huggingface.co/spaces/allenai/reward-bench) (Note: the leaderboard was updated to v2 in June 2025), a comprehensive benchmark designed to assess reward model performance across multiple dimensions of LLM alignment. Reward-Bench evaluates models on four key aspects: general chat quality, challenging chat scenarios, safety considerations, and reasoning capabilities.
 
 
 Rank | Model | Base Model | Method | Overall Score | Chat     | Chat Hard | Safety   | Reasoning |
